@@ -1,0 +1,10 @@
+baseURL = "https://ryantherileyman.github.io/explorewpgparks-devblog/"
+languageCode = "en-us"
+title = "Dev Blog - Exploring Winnipeg Parks"
+theme = "PaperMod"
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowCodeCopyButtons = true
