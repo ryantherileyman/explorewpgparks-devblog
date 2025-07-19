@@ -3,3 +3,6 @@
 .hugo_build.lock
 /public/
 /resources/
+
+# Python
+python/**/.venv/
