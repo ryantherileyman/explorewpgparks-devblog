@@ -1,4 +1,6 @@
 +++
+github-status = "published"
+hashnode-status = "published"
 date = "2025-07-18T18:39:06-05:00"
 draft = false
 title = "Exploring Winnipeg Parks - Dev Blog for a Photography and Community Website"

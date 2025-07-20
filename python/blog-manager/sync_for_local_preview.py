@@ -1,30 +1,16 @@
 import os
 import shutil
-import toml
+from blog_manager_utils import extract_toml_frontmatter
 import re
 
 BLOG_POSTS_SOURCE_DIR = "../../blog-posts"
 HUGO_CONTENT_DIR = "../../content/posts"
 
-def extract_toml_frontmatter(filepath):
-    with open(filepath, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-    
-    if not (lines[0].strip() == "+++" and "+++\n" in lines[1:]):
-        return None  # Not TOML frontmatter
-
-    end_idx = lines[1:].index("+++\n") + 1
-    toml_text = "".join(lines[1:end_idx])
-    return toml.loads(toml_text)
-
-def is_post_for_preview(frontmatter):
+def is_post_being_edited(frontmatter):
     if not frontmatter:
         return False
 
-    if frontmatter.get("draft", False) is not True:
-        return False
-
-    status = frontmatter.get("hashnode-status", "editing")
+    status = frontmatter.get("github-status", "editing")
     result = status.lower() != "published"
     return result
 
@@ -56,7 +42,7 @@ def main():
         src_index_path = os.path.join(root, "index.md")
         
         frontmatter = extract_toml_frontmatter(src_index_path)
-        if is_post_for_preview(frontmatter):
+        if is_post_being_edited(frontmatter):
             rel_path = os.path.relpath(root, BLOG_POSTS_SOURCE_DIR)
             dst_folder = os.path.join(HUGO_CONTENT_DIR, rel_path)
             sync_post_folder(root, dst_folder)
