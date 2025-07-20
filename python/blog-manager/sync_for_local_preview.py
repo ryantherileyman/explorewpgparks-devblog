@@ -1,18 +1,10 @@
 import os
 import shutil
-from blog_manager_utils import extract_toml_frontmatter
+from blog_manager_utils import BLOG_POSTS_SOURCE_DIR, HUGO_CONTENT_DIR, extract_toml_frontmatter, is_post_being_edited
 import re
 
 BLOG_POSTS_SOURCE_DIR = "../../blog-posts"
 HUGO_CONTENT_DIR = "../../content/posts"
-
-def is_post_being_edited(frontmatter):
-    if not frontmatter:
-        return False
-
-    status = frontmatter.get("github-status", "editing")
-    result = status.lower() != "published"
-    return result
 
 def sync_post_folder(src_folder, dst_folder):
     if os.path.exists(dst_folder):
