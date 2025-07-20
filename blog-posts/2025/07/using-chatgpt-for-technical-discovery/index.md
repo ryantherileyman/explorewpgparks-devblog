@@ -2,7 +2,8 @@
 date = "2025-07-20T12:49:00-05:00"
 draft = false
 title = "My Experience Using ChatGPT for Technical Discovery"
-tags = [ "ai", "chatgpt", "seo" ]
+tags = [ "ai", "chatgpt", "seo",]
+github-status = "published"
 +++
 Welcome!
 
