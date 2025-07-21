@@ -4,9 +4,12 @@ draft = false
 title = "My Experience Using ChatGPT for Technical Discovery"
 show_description = false
 description = "Personal experience using ChatGPT for technical discovery, with thoughts how to guide discussions and its pros and cons."
-images = [ "chatgpt-discovery-post-og-image.jpg" ]
+images = [ "chatgpt-discovery-post-og-image.jpg",]
 tags = [ "ai", "chatgpt", "seo",]
 github-status = "published"
+hashnode-cover-image = "chatgpt-discovery-post-cover-image.jpg"
+hashnode-status = "published"
+hashnode-slug = "my-experience-using-chatgpt-for-technical-discovery"
 +++
 Welcome!
 
