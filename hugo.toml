@@ -3,6 +3,9 @@ languageCode = "en-us"
 title = "Dev Blog - Exploring Winnipeg Parks"
 theme = "PaperMod"
 
+[outputs]
+home = [ "HTML", "RSS" ]
+
 [params]
   defaultTheme = "auto"
   ShowReadingTime = true
