@@ -1,10 +1,13 @@
 +++
-github-status = "published"
-hashnode-status = "published"
 date = "2025-07-18T18:39:06-05:00"
 draft = false
 title = "Exploring Winnipeg Parks - Dev Blog for a Photography and Community Website"
+show_description = false
+description = "Dev blog chronicling the development of Exploring Winnipeg Parks, a photography website powered by Python automation and open-source tools."
+images = [ "images/intro-post-og-image.jpg" ]
 tags = [ "web-development", "python", "automation", "photography", "static-website" ]
+github-status = "published"
+hashnode-status = "published"
 +++
 Welcome! For the past few years, I've been building up a website featuring my photos of parks, community centres, and other landmarks throughout my home town of Winnipeg. I started this personal project about a year-and-a-half into the Covid lockdown period, in large part as a way to get myself outdoors and staying active. Since then, I've visited enough parks throughout the city to post well over 100 photo galleries, with many more in the queue!
 

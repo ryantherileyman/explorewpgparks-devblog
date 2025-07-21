@@ -2,6 +2,9 @@
 date = "2025-07-20T12:49:00-05:00"
 draft = false
 title = "My Experience Using ChatGPT for Technical Discovery"
+show_description = false
+description = "Personal experience using ChatGPT for technical discovery, with thoughts how to guide discussions and its pros and cons."
+images = [ "chatgpt-discovery-post-og-image.jpg" ]
 tags = [ "ai", "chatgpt", "seo",]
 github-status = "published"
 +++
