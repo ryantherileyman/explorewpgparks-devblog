@@ -7,6 +7,9 @@ description = "Covers the absolute basics of getting started with Python, from i
 images = [ "intro-to-python-post-og-image.jpg",]
 tags = [ "python", "python-beginner", "tutorial",]
 hashnode-cover-image = "intro-to-python-post-cover-image.jpg"
+github-status = "published"
+hashnode-status = "published"
+hashnode-slug = "an-introduction-to-python"
 +++
 Welcome!
 
