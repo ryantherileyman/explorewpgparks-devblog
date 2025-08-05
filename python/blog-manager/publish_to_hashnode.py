@@ -30,7 +30,7 @@ def is_post_unpublished(frontmatter):
     result = status.lower() == "unpublished"
     return result
 
-def convert_markdown_image_paths(index_toml, canonicalUrl):
+def convert_markdown_image_paths(md_content, canonicalUrl):
     def replacer(match):
         alt_text = match.group(1)
         image_rel_path = match.group(2)
@@ -41,8 +41,48 @@ def convert_markdown_image_paths(index_toml, canonicalUrl):
         full_url = canonicalUrl + image_rel_path
         return f'![{alt_text}]({full_url})'
     
-    md_content = "".join(index_toml["markdown_lines"])
     result = re.sub(r'!\[(.*?)\]\((.*?)\)', replacer, md_content)
+    return result
+
+def is_relative_blog_post_link(relative_path):
+    parts = relative_path.rstrip("/").split("/")
+    
+    is_same_month_blog_post = ( len(parts) == 2 and parts[0] == ".." )
+    is_diff_month_blog_post = ( len(parts) == 4 and parts[0] == ".." and parts[1] == ".." and parts[2].isdigit() and len(parts[2]) == 2 )
+    id_diff_year_blog_post = ( len(parts) == 6 and parts[0] == ".." and parts[1] == ".." and parts[2] == ".." and parts[3].isdigit() and len(parts[3]) == 4 and parts[4].isdigit() and len(parts[4]) == 2 )
+    
+    result = is_same_month_blog_post or is_diff_month_blog_post or id_diff_year_blog_post
+    return result
+
+def convert_markdown_relative_link_paths(md_content, blog_post_path_str):
+    def replacer(match):
+        alt_text = match.group(1)
+        link_rel_path = match.group(2).rstrip("/")
+        
+        if not is_relative_blog_post_link(link_rel_path):
+            return match.group(0)
+        
+        relative_post_index_path = os.path.join(blog_post_path_str, link_rel_path, "index.md")
+        
+        if not os.path.exists(relative_post_index_path):
+            return match.group(0)
+        
+        if not relative_post_index_toml["frontmatter"]["hashnode-slug"]:
+            return match.group(0)
+        
+        relative_post_index_toml = extract_toml(relative_post_index_path)
+        relative_post_hashnode_slug = relative_post_index_toml["frontmatter"]["hashnode-slug"]
+        
+        full_url = "https://" + HASHNODE_HOST + "/" + relative_post_hashnode_slug
+        return f'[{alt_text}]({full_url})'
+    
+    result = re.sub(r'(?<!\!)\[([^\]]+)\]\((\.\./[^)]+)\)', replacer, md_content)
+    return result
+
+def convert_markdown_paths(blog_post_path_str, index_toml, canonicalUrl):
+    result = "".join(index_toml["markdown_lines"])
+    result = convert_markdown_image_paths(result, canonicalUrl)
+    result = convert_markdown_relative_link_paths(result, blog_post_path_str)
     return result
 
 def build_publish_ids_gql(frontmatter):
@@ -89,7 +129,7 @@ def build_publish_post_gql():
 
 def build_publish_post_variables(blog_post_path_str, index_toml, publish_ids_response):
     canonicalUrl = "https://ryantherileyman.github.io/" + GITHUB_PAGES_BLOG_SLUG + "/posts/" + blog_post_path_str.removeprefix("../../blog-posts/") + "/"
-    converted_md = convert_markdown_image_paths(index_toml, canonicalUrl)
+    converted_md = convert_markdown_paths(blog_post_path_str, index_toml, canonicalUrl)
     result = {
         "input": {
             "publicationId": publish_ids_response["publication"]["id"],
