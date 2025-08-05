@@ -67,11 +67,10 @@ def convert_markdown_relative_link_paths(md_content, blog_post_path_str):
         if not os.path.exists(relative_post_index_path):
             return match.group(0)
         
-        if not relative_post_index_toml["frontmatter"]["hashnode-slug"]:
-            return match.group(0)
-        
         relative_post_index_toml = extract_toml(relative_post_index_path)
         relative_post_hashnode_slug = relative_post_index_toml["frontmatter"]["hashnode-slug"]
+        if not relative_post_index_toml["frontmatter"]["hashnode-slug"]:
+            return match.group(0)
         
         full_url = "https://" + HASHNODE_HOST + "/" + relative_post_hashnode_slug
         return f'[{alt_text}]({full_url})'

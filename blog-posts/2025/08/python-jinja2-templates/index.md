@@ -4,9 +4,12 @@ draft = false
 title = "Static Website Generation using Jinja2 Templates"
 show_description = false
 description = "An introduction to using Jinja2 templates in Python for static website generation."
-images = [ "python-jinja2-templates-post-og-image", ]
-tags = [ "python", "web-development", "static-website", ]
+images = [ "python-jinja2-templates-post-og-image",]
+tags = [ "python", "web-development", "static-website",]
 hashnode-cover-image = "python-jinja2-templates-post-cover-image.jpg"
+github-status = "published"
+hashnode-status = "published"
+hashnode-slug = "static-website-generation-using-jinja2-templates"
 +++
 Welcome!
 
