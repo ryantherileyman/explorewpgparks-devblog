@@ -7,6 +7,9 @@ description = "Creating video clips of animated maps using a web browser and OBS
 images = [ "leaflet-map-animations-post-og-image.jpg",]
 tags = [ "animation", "web-development",]
 hashnode-cover-image = "leaflet-map-animations-post-cover-image.jpg"
+github-status = "published"
+hashnode-status = "published"
+hashnode-slug = "creating-map-animations-with-leafletjs"
 +++
 Welcome!
 
